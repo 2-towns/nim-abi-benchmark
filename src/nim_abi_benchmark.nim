@@ -80,14 +80,6 @@ proc randomBytes[N: static int](): array[N, byte] =
       b = rand(byte)
   return a
 
-proc compare(timea: float, timeb: float, description: string ) =
-  if timeb > timea:
-    let ratio = timea.float / timeb.float
-    echo description & "in web3 is {ratio:.2f}x slower than in contractabi"
-  else:
-    let ratio = timeb.float / timea.float
-    echo description & "in web3 is {ratio:.2f}x faster than in contractabi"
-
 const Iterations = 100_000
 
 proc benchmarkEncode(input: auto) =
