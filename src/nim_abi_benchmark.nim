@@ -111,7 +111,6 @@ proc benchmarkEncode(input: auto) =
   durationA = cpuTime() - start
   echo &"contractabi: Decoding {$typeof(input)} took {(durationA * 1000).int}ms"
 
-  encodedB = Abi.encode(input)
   start = cpuTime()
   for _ in 0 ..< Iterations:
     discard Abi.decode(encodedB, typeof(input))
