@@ -90,7 +90,7 @@ proc compare(timea: float, timeb: float, description: string ) =
 
 const Iterations = 100_000
 
-proc benchmarkEncode(input: auto): seq[byte] =
+proc benchmarkEncode(input: auto) =
   var bytes: seq[byte]
   var encodedA: seq[byte]
   var start = cpuTime()
@@ -133,16 +133,14 @@ proc benchmarkEncode(input: auto): seq[byte] =
     let ratio = durationA / durationB
     echo &"Decoding {$typeof(input)} in web3 ms is {ratio:.2f}x faster than in contractabi\n"
 
-  return bytes
-
-let smallIntEncoded = benchmarkEncode(16.uint16)
-let helloWorldEncoded = benchmarkEncode("Hello world")
-let longStringEncoded = benchmarkEncode(repeat('x', 5_000))
-let randomBytes32Encoded = benchmarkEncode(randomBytes[32]())
-let randonBytes1024Encoded = benchmarkEncode(randomBytes[1024]())
+benchmarkEncode(16.uint16)
+benchmarkEncode("Hello world")
+benchmarkEncode(repeat('x', 5_000))
+benchmarkEncode(randomBytes[32]())
+benchmarkEncode(randomBytes[1024]())
 
 let x =  CustomType(a: 42'u16, b: "Hello, World!")
-let customTypeEncoded =benchmarkEncode(x)
+benchmarkEncode(x)
 
 let deal = StorageDeal(
   client: randomBytes[20](),
@@ -154,4 +152,4 @@ let deal = StorageDeal(
   signature: randomBytes[65](),
   metadata: "Sample metadata for storage deal"
 )
-let dealEncoded = benchmarkEncode(deal)
+benchmarkEncode(deal)
