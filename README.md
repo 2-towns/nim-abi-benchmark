@@ -2,8 +2,15 @@
 
 This document presents benchmark results comparing the performance of two Nim libraries for Ethereum ABI encoding and decoding:
 
-- **contractabi**: A custom ABI implementation.
+- **contractabi**: The Codex ABI implementation.
 - **web3**: The ABI implementation from the Nim web3 library.
+
+# Run
+
+```bash
+nimble install
+nimble c -r  src/nim_abi_benchmark.nim
+```
 
 ## Summary
 

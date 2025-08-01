@@ -91,9 +91,9 @@ proc compare(timea: float, timeb: float, description: string ) =
 const Iterations = 100_000
 
 proc benchmarkEncode(input: auto): seq[byte] =
-  var start = cpuTime()
   var bytes: seq[byte]
   var encodedA: seq[byte]
+  var start = cpuTime()
   for _ in 0 ..< Iterations:
     encodedA = contractabi.AbiEncoder.encode(input)
   var durationA = cpuTime() - start
